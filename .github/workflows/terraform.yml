@@ -35,7 +35,7 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_S3_ENDPOINT: ${{ vars.AWS_S3_ENDPOINT }}
-        TF_VAR_hcloud_api_token: ${{ secrets.AWS_S3_ENDPOINT }}
+        TF_VAR_hcloud_api_token: ${{ secrets.TF_VAR_HCLOUD_API_TOKEN }}
         TF_VAR_hosttech_dns_token: ${{ secrets.TF_VAR_HOSTTECH_DNS_TOKEN }}
         TF_VAR_hosttech_dns_zone_id: ${{ vars.TF_VAR_HOSTTECH_DNS_ZONE_ID }}
 
@@ -51,7 +51,7 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_S3_ENDPOINT: ${{ vars.AWS_S3_ENDPOINT }}
-        TF_VAR_hcloud_api_token: ${{ secrets.AWS_S3_ENDPOINT }}
+        TF_VAR_hcloud_api_token: ${{ secrets.TF_VAR_HCLOUD_API_TOKEN }}
         TF_VAR_hosttech_dns_token: ${{ secrets.TF_VAR_HOSTTECH_DNS_TOKEN }}
         TF_VAR_hosttech_dns_zone_id: ${{ vars.TF_VAR_HOSTTECH_DNS_ZONE_ID }}
 
