@@ -22,7 +22,7 @@ module "training-cluster" {
 
   hcloud_api_token     = var.hcloud_api_token
   hosttech_dns_token   = var.hosttech_dns_token
-  hosttech-dns-zone-id = var.hosttech-dns-zone-id
+  hosttech-dns-zone-id = var.hosttech_dns_zone_id
 
 
   extra_ssh_keys = [
