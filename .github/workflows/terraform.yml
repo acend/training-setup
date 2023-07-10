@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   terraform:
-    name: 'Validate/Link, Plan & Apply'
+    name: 'Validate & Lint, Plan, Apply'
     runs-on: ubuntu-latest
     environment: production
 
