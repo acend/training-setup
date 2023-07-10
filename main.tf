@@ -15,9 +15,8 @@ terraform {
 # module "training-cluster" {
 #   source = "git::https://github.com/acend/terraform-k8s-cluster-lab.git//modules/training-cluster"
 
-#   first_install = true
-
-#   cluster_name = "test"
+#   cluster_name   = "training"
+#   cluster_domain = "cluster.acend.ch"
 #   worker_count = "2"
 
 #   hcloud_api_token     = var.hcloud_api_token
@@ -32,16 +31,10 @@ terraform {
 #     "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCrZjA4K3PgqMIsPD1S8DF0K5khvf5WFXJpYo50ygOZ+di5yHgc+grUG7IkC8i6J4m4UPb7VW6Ae70t/6PkLv49NsmUfYWvlL1K6m6QYNYQu8exX7TdRuKF/dcLz0vPvkmcy68spNCIs2/IxIL02L58zf72IbNCLkCr35cqc8EAsGaXMLJM3Vx+8Bjg2oA/tsI7+eqMlKIwfOk0jkQwZQAy38MZtDYJ3crISIZknv6NGK7HDx4LGZifRxe04nxB1xZlgWO6jzl4DrH96EyxgUqLO/Rc0X92ugKmIUZ9ZyCOB1jVAbGmt8dH2rgEX41PHkplQhfv6AybQ22jDX6BcGZv"
 #   ]
 
-#   cluster_admin = []
+#   cluster_admin = ["user1", "user2", "user3", "user4", "user5"]
 
 #   # Webshell
 #   count-students = 0
-
-#   # Argocd
-#   argocd-enabled = false
-
-#   # Gitea
-#   gitea-enabled = false
 
 #   # User VMs
 #   user-vms-enabled = false
