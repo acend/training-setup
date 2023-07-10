@@ -21,7 +21,7 @@ locals {
 
 
 module "training-cluster" {
- 
+
   source = "git::https://github.com/acend/terraform-k8s-cluster-lab.git//modules/training-cluster"
 
   cluster_name   = "test"
@@ -49,6 +49,6 @@ module "training-cluster" {
 }
 
 output "test-kubeconfig" {
-  value = module.training-cluster.kubeconfig_raw
+  value     = module.training-cluster.kubeconfig_raw
   sensitive = true
 }
