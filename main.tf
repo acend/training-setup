@@ -19,36 +19,63 @@ locals {
   ]
 }
 
+provider "restapi" {
+  alias                = "hosttech_dns"
+  uri                  = "https://api.ns1.hosttech.eu"
+  write_returns_object = true
 
-module "training-cluster" {
-
-  source = "git::https://github.com/acend/terraform-k8s-cluster-lab.git//modules/training-cluster"
-
-  cluster_name   = "test"
-  cluster_domain = "cluster.acend.ch"
-  worker_count   = "2"
-
-  hcloud_api_token     = var.hcloud_api_token
-  hosttech_dns_token   = var.hosttech_dns_token
-  hosttech-dns-zone-id = var.hosttech_dns_zone_id
-
-
-  # SSH Public keys deployed on the VM's for SSH access
-  extra_ssh_keys = local.ssh_keys
-
-  cluster_admin = ["user1", "user2", "user3", "user4", "user5"]
-
-  # Webshell
-  count-students = 1
-
-  # User VMs
-  user-vms-enabled = false
-
-  # RBAC in Webshell
-  webshell-rbac-enabled = true
+  headers = {
+    Authorization = "Bearer ${var.hosttech_dns_token}"
+    ContentType   = "application/json"
+  }
 }
 
-output "test-kubeconfig" {
-  value     = module.training-cluster.kubeconfig_raw
-  sensitive = true
+provider "hcloud" {
+  token = var.hcloud_api_token
 }
+
+provider "kubernetes" {
+  alias = "acend"
+  host  = "https://k8s-prod.acend.ch:6443"
+  insecure = true
+}
+
+
+# module "training-cluster" {
+
+#   providers = {
+#     restapi.hosttech_dns = restapi.hosttech_dns
+#     hcloud               = hcloud
+#     kubernetes.acend     = kubernetes.acend
+#   }
+
+#   source = "git::https://github.com/acend/terraform-k8s-cluster-lab.git//modules/training-cluster"
+
+#   cluster_name   = "test"
+#   cluster_domain = "cluster.acend.ch"
+#   worker_count   = "2"
+
+#   hcloud_api_token     = var.hcloud_api_token
+#   hosttech_dns_token   = var.hosttech_dns_token
+#   hosttech-dns-zone-id = var.hosttech_dns_zone_id
+
+
+#   # SSH Public keys deployed on the VM's for SSH access
+#   extra_ssh_keys = local.ssh_keys
+
+#   cluster_admin = ["user1"]
+
+#   # Webshell
+#   count-students = 0
+
+#   # User VMs
+#   user-vms-enabled = false
+
+#   # RBAC in Webshell
+#   webshell-rbac-enabled = true
+# }
+
+# output "test-kubeconfig" {
+#   value     = module.training-cluster.kubeconfig_raw
+#   sensitive = true
+# }
