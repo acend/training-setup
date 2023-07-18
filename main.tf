@@ -34,9 +34,10 @@ provider "hcloud" {
   token = var.hcloud_api_token
 }
 
+// Kubernetes Provider for the acend bootstraping cluster
 provider "kubernetes" {
-  alias = "acend"
-  host  = "https://k8s-prod.acend.ch:6443"
+  alias    = "acend"
+  host     = "https://k8s-prod.acend.ch:6443"
   insecure = true
 }
 
@@ -66,7 +67,7 @@ provider "kubernetes" {
 #   cluster_admin = ["user1"]
 
 #   # Webshell
-#   count-students = 0
+#   count-students = 1
 
 #   # User VMs
 #   user-vms-enabled = false
