@@ -40,6 +40,7 @@ flowchart LR
 ### Cluster provisioning using Terraform triggered in GitHub Actions workflows
 
 - Terraform state stored in S3 bucket (on acend cluster)
+  - The Github Action in this Repository uses the correct secrets and environment variables for this. The Terraform backend is conifgured to use those to store the state.
 - Each cluster flavor has its own Terraform module which is in a seperated repository.
 - Terraform provider should be configured in root module (if possible) and passed to the module. Otherwise a simple removing of the module definition does not work as Terraform cannot remove the components within the module if provider definition is gone.
 
@@ -62,7 +63,7 @@ module "training-cluster" {
   
 ### Register as cluster in the bootstrap Argocd (on acend cluster)
 
-The Kubernetes Terraform provider `acend` is configured with a bootstrap Service Account that allows to create secrets in the `argocd` Namespace. It can also create `clustersecretstores` for the [external secret operator](https://external-secrets.io/).
+The Kubernetes Terraform provider `acend` is configured with a bootstrap Service Account (provided in the GitHub Action) that allows to create secrets in the `argocd` Namespace. It can also create `clustersecretstores` for the [external secret operator](https://external-secrets.io/).
 
 Example for cluster registration with ArgoCD:
 
