@@ -43,7 +43,7 @@ flowchart LR
 - Each cluster flavor has its own Terraform module which is in a seperated repository.
 - Terraform provider should be configured in root module (if possible) and passed to the module. Otherwise a simple removing of the module definition does not work as Terraform cannot remove the components within the module if provider definition is gone.
 
-Example:
+Example for the `k8s` flavor cluster:
 
 ```hcl
 module "training-cluster" {
@@ -62,7 +62,7 @@ module "training-cluster" {
   
 ### Register as cluster in the bootstrap Argocd (on acend cluster)
 
-The Kubernetes Terraform provider `acend` is configured with a bootstrap Service Account that allows to create secrets in the `argocd` Namespace. It can also create `clustersecretstores` for the [external secret operator](https://external-secrets.io/)
+The Kubernetes Terraform provider `acend` is configured with a bootstrap Service Account that allows to create secrets in the `argocd` Namespace. It can also create `clustersecretstores` for the [external secret operator](https://external-secrets.io/).
 
 Example for cluster registration with ArgoCD:
 
@@ -99,7 +99,7 @@ resource "kubernetes_secret" "argocd-cluster" {
 
 - The name of the secret is the cluster name. This can then be used in the bootstraping ApplicationSet to apply the correct overlay of the bootstraping Repository.
 - The certificate in the secret needs to be able to deploy all the needed ArgoCD applications on the training cluster.
-- The bootstrapping ApplicationSet is deployed in the main acend infrastructure. Here is an [example](https://github.com/acend/infrastructure/blob/main/deploy/training-cluster/base/argocd-bootstrap-k8s.yaml) for the `k8s`flavor:
+- The bootstrapping ApplicationSet is deployed from the main acend infrastructure. Here is an [example](https://github.com/acend/infrastructure/blob/main/deploy/training-cluster/base/argocd-bootstrap-k8s.yaml) for the `k8s` flavor:
 
 ```yaml
 apiVersion: argoproj.io/v1alpha1
@@ -132,6 +132,11 @@ spec:
           selfHeal: true
 ```
 
+- use your flavor specific repository for the Application definition.
+- if needed, create overlays per cluster to differentiate between clusters. You have to maintain those overlays in your repository. The overlay shall use the cluster name
+
+Here's an [example](https://github.com/acend/terraform-k8s-cluster-lab/tree/main/deploy/bootstrap) of the bootstraping app for the `k8s` flavored cluster.
+
 Make sure to use the correct labels for your cluster:
 
 - `argocd.argoproj.io/secret-type: cluster` has to be set for ArgoCD to use this as cluster conifguration
@@ -140,9 +145,10 @@ Make sure to use the correct labels for your cluster:
 
 ### Cluster configuration
 
-The `bootstrap` application (deployed from ArgoCD on the bootstraping cluster using the provider cluster configuration with the provisioned secret) shall deploy a [AppOfApps][(https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping/#app-of-apps-pattern] Application on the training cluster.
+The `bootstrap` application (deployed from ArgoCD on the bootstraping cluster using the provider cluster configuration with the provisioned secret) shall deploy a [AppOfApps](https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping/#app-of-apps-pattern] Application on the training cluster.
+Here's an [example](https://github.com/acend/terraform-k8s-cluster-lab/tree/main/deploy/apps) of the AppOfApps application for the `k8s` flavored cluster.
 
-The AppOfApps Application shall deploy all necessary components onto the training cluster:
+The AppOfApps Application shall then deploy all necessary components onto the training cluster:
 
 - use Kustomize (when possible) with.
 - For Helm Charts we also use [kustomize to generate YAML resources out of a Helm Chart](https://github.com/kubernetes-sigs/kustomize/blob/master/examples/chart.md)
