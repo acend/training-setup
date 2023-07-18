@@ -134,7 +134,7 @@ spec:
 ```
 
 - use your flavor specific repository for the Application definition.
-- if needed, create overlays per cluster to differentiate between clusters. You have to maintain those overlays in your repository. The overlay shall use the cluster name
+- if needed, create overlays per cluster to differentiate between clusters. You have to maintain those overlays in your repository. The overlay shall use the cluster name.
 
 Here's an [example](https://github.com/acend/terraform-k8s-cluster-lab/tree/main/deploy/bootstrap) of the bootstraping app for the `k8s` flavored cluster.
 
@@ -155,3 +155,6 @@ The AppOfApps Application shall then deploy all necessary components onto the tr
 - For Helm Charts we also use [kustomize to generate YAML resources out of a Helm Chart](https://github.com/kubernetes-sigs/kustomize/blob/master/examples/chart.md)
 - When Argo app is simple (e.g., one or a few files in a kustomize directory), use a centralized repository for all these apps (regardless of which cluster)
 - When Argo app is complex, use a dedicated repository
+
+ArgoCD on the training cluster can be deployed from your Terraform cluster module on using the bootstrap application (which is deployed by the bootstrap ArgoCD Cluster).
+For the `k8s` flavor, this is done using terraform, as ArgoCD needs to be configured with the local trainee accounts (which are generated in Terraform) and therefore can currently not be deployed from the bootstrapping app
