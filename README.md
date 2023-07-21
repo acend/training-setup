@@ -2,6 +2,10 @@
 
 This repository hosts everything related to the setup of acend's trainings, e.g., the Kubernetes cluster creation.
 
+The following flavors are available to setup a Kubernetes Training cluster:
+
+- `k8s`: [https://github.com/acend/terraform-k8s-cluster-lab.git](https://github.com/acend/terraform-k8s-cluster-lab.git)
+
 ## Workflow
 
 ```mermaid
@@ -37,7 +41,7 @@ flowchart LR
     C1 -- deploys --> C2(Bootstrap Application\non Training Cluster)  -- on ---> D1
 ```
 
-### Cluster provisioning using Terraform triggered in GitHub Actions workflows
+### 1. Cluster provisioning using Terraform triggered in GitHub Actions workflows
 
 - Terraform state stored in S3 bucket (on acend cluster)
   - The Github Action in this Repository uses the correct secrets and environment variables for this. The Terraform backend is conifgured to use those to store the state.
@@ -61,7 +65,7 @@ module "training-cluster" {
 }
 ```
   
-### Register as cluster in the bootstrap Argocd (on acend cluster)
+### 2. Register as cluster in the bootstrap Argocd (on acend cluster)
 
 The Kubernetes Terraform provider `acend` is configured with a bootstrap Service Account (provided in the GitHub Action) that allows to create secrets in the `argocd` Namespace. It can also create `clustersecretstores` for the [external secret operator](https://external-secrets.io/).
 
@@ -144,7 +148,7 @@ Make sure to use the correct labels for your cluster:
 - `type: training` indicating this is a training cluster (tbd)
 - `flavor` e.g. `k8s` depending on the cluster you created. The ApplicationSet on the bootstrap cluster and the [cluster generator](https://argocd-applicationset.readthedocs.io/en/stable/Generators-Cluster/) will target this label to deploy the correct bootstrap application.
 
-### Cluster configuration
+### 3. Cluster configuration
 
 The `bootstrap` application (deployed from ArgoCD on the bootstraping cluster using the provider cluster configuration with the provisioned secret) shall deploy a [AppOfApps](https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping/#app-of-apps-pattern] Application on the training cluster.
 Here's an [example](https://github.com/acend/terraform-k8s-cluster-lab/tree/main/deploy/apps) of the AppOfApps application for the `k8s` flavored cluster.
