@@ -144,13 +144,13 @@ Here's an [example](https://github.com/acend/terraform-k8s-cluster-lab/tree/main
 
 Make sure to use the correct labels for your cluster:
 
-- `argocd.argoproj.io/secret-type: cluster` has to be set for ArgoCD to use this as cluster conifguration
-- `type: training` indicating this is a training cluster (tbd)
+- `argocd.argoproj.io/secret-type: cluster` has to be set for ArgoCD to use this as cluster configuration.
+- `type: training` indicating this is a training cluster (tbd).
 - `flavor` e.g. `k8s` depending on the cluster you created. The ApplicationSet on the bootstrap cluster and the [cluster generator](https://argocd-applicationset.readthedocs.io/en/stable/Generators-Cluster/) will target this label to deploy the correct bootstrap application.
 
 ### 3. Cluster configuration
 
-The `bootstrap` application (deployed from ArgoCD on the bootstraping cluster using the provider cluster configuration with the provisioned secret) shall deploy a [AppOfApps](https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping/#app-of-apps-pattern] Application on the training cluster.
+The `bootstrap` application (deployed from ArgoCD on the bootstraping cluster using the provider cluster configuration with the provisioned secret) shall deploy a [AppOfApps](https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping/#app-of-apps-pattern) Application on the training cluster.
 Here's an [example](https://github.com/acend/terraform-k8s-cluster-lab/tree/main/deploy/apps) of the AppOfApps application for the `k8s` flavored cluster.
 
 The AppOfApps Application shall then deploy all necessary components onto the training cluster:
