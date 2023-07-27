@@ -42,41 +42,40 @@ provider "kubernetes" {
 }
 
 
-# module "training-cluster" {
+module "training-cluster" {
 
-#   providers = {
-#     restapi.hosttech_dns = restapi.hosttech_dns
-#     hcloud               = hcloud
-#     kubernetes.acend     = kubernetes.acend
-#   }
+  providers = {
+    restapi.hosttech_dns = restapi.hosttech_dns
+    hcloud               = hcloud
+    kubernetes.acend     = kubernetes.acend
+  }
 
-#   source = "git::https://github.com/acend/terraform-k8s-cluster-lab.git//modules/training-cluster"
+  source = "git::https://github.com/acend/terraform-k8s-cluster-lab.git//modules/training-cluster"
 
-#   cluster_name   = "test"
-#   cluster_domain = "cluster.acend.ch"
-#   worker_count   = "2"
+  cluster_name   = "training"
+  cluster_domain = "cluster.acend.ch"
+  worker_count   = "3"
 
-#   hcloud_api_token     = var.hcloud_api_token
-#   hosttech_dns_token   = var.hosttech_dns_token
-#   hosttech-dns-zone-id = var.hosttech_dns_zone_id
+  hcloud_api_token     = var.hcloud_api_token
+  hosttech_dns_token   = var.hosttech_dns_token
+  hosttech-dns-zone-id = var.hosttech_dns_zone_id
 
 
-#   # SSH Public keys deployed on the VM's for SSH access
-#   extra_ssh_keys = local.ssh_keys
+  # SSH Public keys deployed on the VM's for SSH access
+  extra_ssh_keys = local.ssh_keys
 
-#   cluster_admin = ["user1"]
+  cluster_admin = ["user1", "user2", "user3"]
 
-#   # Webshell
-#   count-students = 1
+  # Webshell
+  count-students = 0
+  # User VMs
+  user-vms-enabled = false
 
-#   # User VMs
-#   user-vms-enabled = false
+  # RBAC in Webshell
+  webshell-rbac-enabled = true
+}
 
-#   # RBAC in Webshell
-#   webshell-rbac-enabled = true
-# }
-
-# output "test-kubeconfig" {
-#   value     = module.training-cluster.kubeconfig_raw
-#   sensitive = true
-# }
+output "training-kubeconfig" {
+  value     = module.training-cluster.kubeconfig_raw
+  sensitive = true
+}
