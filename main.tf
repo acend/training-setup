@@ -67,7 +67,7 @@ module "training-cluster" {
   cluster_admin = ["user1", "user2", "user3"]
 
   # Webshell
-  count-students = 0
+  count-students = 10
   # User VMs
   user-vms-enabled = false
 
