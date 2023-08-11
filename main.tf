@@ -54,7 +54,7 @@ module "training-cluster" {
 
   cluster_name   = "training"
   cluster_domain = "cluster.acend.ch"
-  worker_count   = "3"
+  worker_count   = "5"
 
   hcloud_api_token     = var.hcloud_api_token
   hosttech_dns_token   = var.hosttech_dns_token
@@ -64,10 +64,10 @@ module "training-cluster" {
   # SSH Public keys deployed on the VM's for SSH access
   extra_ssh_keys = local.ssh_keys
 
-  cluster_admin = ["user1", "user2", "user3"]
+  cluster_admin = ["user1", "user2", "user3", "user4", "user5", "user6", "user7", "user8"]
 
   # Webshell
-  count-students = 10
+  count-students = 40
   # User VMs
   user-vms-enabled = false
 
