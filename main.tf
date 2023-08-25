@@ -54,7 +54,7 @@ module "training-cluster" {
 
   cluster_name   = "training"
   cluster_domain = "cluster.acend.ch"
-  worker_count   = "12"
+  worker_count   = "3"
 
   hcloud_api_token     = var.hcloud_api_token
   hosttech_dns_token   = var.hosttech_dns_token
@@ -64,15 +64,41 @@ module "training-cluster" {
   # SSH Public keys deployed on the VM's for SSH access
   extra_ssh_keys = local.ssh_keys
 
-  cluster_admin = ["user1", "user2", "user3", "user4", "user5", "user6", "user7", "user8"]
+  cluster_admin = ["user1", "user2", "user3", "user4", "user5"]
 
   # Webshell
-  count-students = 40
+  count-students = 5
   # User VMs
   user-vms-enabled = false
 
   # RBAC in Webshell
   webshell-rbac-enabled = true
+
+  webshell-settings = {
+    version = "0.4.2"
+
+    theia-persistence-enabled = true
+    dind-persistence-enabled  = true
+    webshell-rbac-enabled     = true
+
+    dind_resources = {
+      limits = {
+        cpu    = "2"
+        memory = "1Gi"
+      }
+
+      requests = {
+        cpu    = "50m"
+        memory = "100Mi"
+      }
+    }
+    theia_resources = {
+      requests = {
+        cpu    = "750m"
+        memory = "1Gi"
+      }
+    }
+  }
 }
 
 output "training-kubeconfig" {
