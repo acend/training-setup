@@ -67,7 +67,7 @@ module "training-cluster" {
   cluster_admin = ["user1", "user2", "user3", "user4", "user5"]
 
   # Webshell
-  count-students = 5
+  count-students = 30
   # User VMs
   user-vms-enabled = false
 
@@ -94,7 +94,7 @@ module "training-cluster" {
     }
     theia_resources = {
       requests = {
-        cpu    = "750m"
+        cpu    = "500m"
         memory = "1Gi"
       }
     }
