@@ -67,7 +67,7 @@ module "training-cluster" {
   cluster_admin = ["user1", "user2", "user3", "user4", "user5"]
 
   # Webshell
-  count-students = 30
+  count-students = 20
   # User VMs
   user-vms-enabled = false
 
@@ -75,7 +75,7 @@ module "training-cluster" {
   webshell-rbac-enabled = true
 
   webshell-settings = {
-    version = "0.4.2"
+    version = "0.4.4"
 
     theia-persistence-enabled = true
     dind-persistence-enabled  = true
