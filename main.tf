@@ -54,7 +54,8 @@ module "training-cluster" {
 
   cluster_name   = "training"
   cluster_domain = "cluster.acend.ch"
-  worker_count   = "2"
+  worker_type    = "cx41"
+  worker_count   = "3"
 
   hcloud_api_token     = var.hcloud_api_token
   hosttech_dns_token   = var.hosttech_dns_token
@@ -64,10 +65,10 @@ module "training-cluster" {
   # SSH Public keys deployed on the VM's for SSH access
   extra_ssh_keys = local.ssh_keys
 
-  cluster_admin = ["user1", "user2", "user3", "user4", "user5"]
+  cluster_admin = ["user1", "user2", "user3"]
 
   # Webshell
-  count-students = 0
+  count-students = 20
   # User VMs
   user-vms-enabled = false
 
@@ -94,7 +95,7 @@ module "training-cluster" {
     }
     theia_resources = {
       requests = {
-        cpu    = "500m"
+        cpu    = "300m"
         memory = "1Gi"
       }
     }
