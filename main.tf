@@ -54,7 +54,6 @@ module "training-cluster" {
 
   cluster_name   = "training"
   cluster_domain = "cluster.acend.ch"
-  worker_type    = "cx41"
   worker_count   = "3"
 
   hcloud_api_token     = var.hcloud_api_token
@@ -95,7 +94,7 @@ module "training-cluster" {
     }
     theia_resources = {
       requests = {
-        cpu    = "300m"
+        cpu    = "500m"
         memory = "1Gi"
       }
     }
