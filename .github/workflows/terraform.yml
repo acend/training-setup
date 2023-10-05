@@ -39,7 +39,7 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_ENDPOINT_URL_S3: ${{ vars.AWS_S3_ENDPOINT }}
+        AWS_S3_ENDPOINT: ${{ vars.AWS_S3_ENDPOINT }}
         KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
         TF_VAR_hcloud_api_token: ${{ secrets.TF_VAR_HCLOUD_API_TOKEN }}
         TF_VAR_hosttech_dns_token: ${{ secrets.TF_VAR_HOSTTECH_DNS_TOKEN }}
@@ -62,7 +62,7 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_ENDPOINT_URL_S3: ${{ vars.AWS_S3_ENDPOINT }}
+        AWS_S3_ENDPOINT: ${{ vars.AWS_S3_ENDPOINT }}
         KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
         TF_VAR_hcloud_api_token: ${{ secrets.TF_VAR_HCLOUD_API_TOKEN }}
         TF_VAR_hosttech_dns_token: ${{ secrets.TF_VAR_HOSTTECH_DNS_TOKEN }}
@@ -131,7 +131,7 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_ENDPOINT_URL_S3: ${{ vars.AWS_S3_ENDPOINT }}
+        AWS_S3_ENDPOINT: ${{ vars.AWS_S3_ENDPOINT }}
         KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
         TF_VAR_hcloud_api_token: ${{ secrets.TF_VAR_HCLOUD_API_TOKEN }}
         TF_VAR_hosttech_dns_token: ${{ secrets.TF_VAR_HOSTTECH_DNS_TOKEN }}
