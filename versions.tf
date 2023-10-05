@@ -7,4 +7,6 @@ terraform {
       source = "hetznercloud/hcloud"
     }
   }
+
+  required_version = "1.5.7"
 }
