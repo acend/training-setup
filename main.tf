@@ -64,10 +64,10 @@ module "training-cluster" {
   # SSH Public keys deployed on the VM's for SSH access
   extra_ssh_keys = local.ssh_keys
 
-  cluster_admin = ["user1", "user2", "user3", "user4", "user5"]
+  cluster_admin = ["user1", "user2"]
 
   # Webshell
-  count-students = 5
+  count-students = 7
   # User VMs
   user-vms-enabled = false
 
