@@ -54,7 +54,7 @@ module "training-cluster" {
 
   cluster_name   = "training"
   cluster_domain = "cluster.acend.ch"
-  worker_count   = "3"
+  worker_count   = "7"
 
   hcloud_api_token     = var.hcloud_api_token
   hosttech_dns_token   = var.hosttech_dns_token
@@ -67,7 +67,7 @@ module "training-cluster" {
   cluster_admin = ["user1", "user2"]
 
   # Webshell
-  count-students = 7
+  count-students = 27
   # User VMs
   user-vms-enabled = false
 
