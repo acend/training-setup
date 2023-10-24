@@ -64,10 +64,10 @@ module "training-cluster" {
   # SSH Public keys deployed on the VM's for SSH access
   extra_ssh_keys = local.ssh_keys
 
-  cluster_admin = ["user1", "user2"]
+  cluster_admin = ["user1"]
 
   # Webshell
-  count-students = 0
+  count-students = 2
   # User VMs
   user-vms-enabled = false
 
@@ -75,7 +75,7 @@ module "training-cluster" {
   webshell-rbac-enabled = true
 
   webshell-settings = {
-    version = "0.4.8"
+    version = "0.5.2"
 
     theia-persistence-enabled = true
     dind-persistence-enabled  = true
@@ -103,5 +103,10 @@ module "training-cluster" {
 
 output "training-kubeconfig" {
   value     = module.training-cluster.kubeconfig_raw
+  sensitive = true
+}
+
+output "argocd-admin-password" {
+  value     = module.training-cluster.argocd-admin-password
   sensitive = true
 }
