@@ -67,9 +67,9 @@ flowchart LR
 
     C2-- deploy -->D2(App of Apps)
 
-    D2 -- deploy -->D3(App 1)
-    D2 -- deploy -->D4(App 2)
-    D2 -- deploy -->D5(App n)
+    D2 -- deploy -->D3(App 1) -- on --> D
+    D2 -- deploy -->D4(App 2) -- on --> D
+    D2 -- deploy -->D5(App n) -- on --> D
 
     C -- with --> C1(Applicationset\nCluster generator\nflavor: e.g. k8s)
     C1 -- deploys --> C2(Bootstrap Application\non Training Cluster)  -- on ---> D1
