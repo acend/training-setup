@@ -6,7 +6,41 @@ The following flavors are available to setup a Kubernetes Training cluster:
 
 - `k8s`: [https://github.com/acend/terraform-k8s-cluster-lab.git](https://github.com/acend/terraform-k8s-cluster-lab.git)
 
-## Workflow
+## Usage
+
+### Deploy Training Cluster
+
+#### Deploy `k8s` Flavor
+
+1. Make sure the module definition for the `k8s` flavor exists in `main.tf` and are not commented out. There should be one `module "training-cluster"` and two `output`
+2. Verify module variables, the following usually have to be changed depending on your training setup:
+   - `worker_count`: Number of Kubernetes worker nodes. A minimum of 3 is required. Roughly 1 node per 10 students (TODO: TBD and verified!)
+   - `cluster_admin`: All user with cluster admin privileges. E.g. `["user1","user2"]`
+   - `count-students`: Number of users / students to be deployed.
+
+TODOs and Work in Progress:
+
+- The cluster does have a lot of dependencies between components and therefore the order in which components are installed is vital.
+  ArgoCD Resources uses Sync-Waves to honor the order and also Applications are configured with retries.
+- Give the deployment process a good amount of time to fully complete. There are also Certificates that needs to be created for the ingresses.
+- For troubleshooting, you can use the kubeconfig given in the output `training-kubeconfig`. In order to get this, you need to run
+  `terraform output -raw kubeconfig_raw > kubeconfig.yaml` locally. This requires configured credentials terraform state and bootstrap cluster access (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_S3_ENDPOINT`, `KUBE_TOKEN`)
+
+### Destroy Training Cluster
+
+#### Destroy `k8s` Flavor
+
+1. Run the destroy Github Action. This has to be executed before the next step. Otherwise Terraform will fail to execute due to missing provider configs.
+2. Comment the `module.training-cluster` and the two `output` in `main.tf` for the `k8s` flavor.
+3. Commit the changes.
+
+TODOs and Work in Progress:
+
+- Cleanup up of everyhting does not yet fully work.
+- You might need to remove the ingress controller Loadbalancer manually in the hetzner console. The reason for this, during destroy the Cloud Controller Manager (which provision the loadbalancer) is removed before the removal of the ingress controller.
+- You might need to remove  DNS Records for the training cluster, because Crossplane might be removed before removal of the ingress controller, which prevents removal of the DNS records.
+
+## Concept Training Cluster Setup
 
 ```mermaid
 flowchart LR
@@ -161,4 +195,4 @@ The AppOfApps Application shall then deploy all necessary components onto the tr
 - When Argo app is complex, use a dedicated repository
 
 ArgoCD on the training cluster can be deployed from your Terraform cluster module on using the bootstrap application (which is deployed by the bootstrap ArgoCD Cluster).
-For the `k8s` flavor, this is done using terraform, as ArgoCD needs to be configured with the local trainee accounts (which are generated in Terraform) and therefore can currently not be deployed from the bootstrapping app
+For the `k8s` flavor, this is done using terraform, as ArgoCD needs to be configured with the local trainee accounts (which are generated in Terraform) and therefore can currently not be deployed from the bootstrapping app.

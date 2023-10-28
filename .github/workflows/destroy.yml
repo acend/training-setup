@@ -50,9 +50,9 @@ jobs:
       id: fmt
       run: terraform fmt -check
  
-    - name: Terraform Destroy
+    - name: Terraform Destroy module.training-setup
       if: github.ref == 'refs/heads/main' && ( github.event_name == 'workflow_dispatch')
-      run: terraform destroy -auto-approve -input=false
+      run: terraform destroy -auto-approve -input=false -target module.training-setup -target output.training-kubeconfig -target output.argocd-admin-password
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

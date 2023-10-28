@@ -42,6 +42,9 @@ provider "kubernetes" {
 }
 
 
+### Start Training Cluster flavor k8s
+###############################
+
 # module "training-cluster" {
 
 #   providers = {
@@ -113,3 +116,6 @@ provider "kubernetes" {
 #   value     = module.training-cluster.argocd-admin-password
 #   sensitive = true
 # }
+
+
+### End Training Cluster flavor k8s
