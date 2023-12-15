@@ -67,12 +67,12 @@ module "training-cluster" {
   # SSH Public keys deployed on the VM's for SSH access
   extra_ssh_keys = local.ssh_keys
 
-  cluster_admin = ["user1","user2","user3"]
+  cluster_admin = ["user1", "user2", "user3"]
 
   # Webshell
   # Make sure to scale down to 0 before removing the cluster, 
   # otherwise there will be terraform errors due to missing provider config
-  count-students = 15 
+  count-students = 15
 
   # User VMs
   user-vms-enabled = false
@@ -118,7 +118,7 @@ output "argocd-admin-password" {
 }
 
 output "student-passwords" {
-  value = module.training-cluster.student-passwords
+  value     = module.training-cluster.student-passwords
   sensitive = true
 }
 
