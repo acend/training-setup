@@ -72,7 +72,7 @@ module "training-cluster" {
   # Webshell
   # Make sure to scale down to 0 before removing the cluster, 
   # otherwise there will be terraform errors due to missing provider config
-  count-students = 0
+  count-students = 25
 
   # User VMs
   user-vms-enabled = false
