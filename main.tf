@@ -53,7 +53,7 @@ module "training-cluster" {
     kubernetes.acend     = kubernetes.acend
   }
 
-source = "git::https://github.com/acend/terraform-k8s-cluster-lab.git//modules/training-cluster"
+  source = "git::https://github.com/acend/terraform-k8s-cluster-lab.git//modules/training-cluster"
 
   cluster_name   = "training"
   cluster_domain = "cluster.acend.ch"
