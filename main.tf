@@ -81,7 +81,7 @@ module "training-cluster" {
   webshell-rbac-enabled = true
 
   webshell-settings = {
-    version = "0.5.5"
+    version = "0.5.6"
 
     theia-persistence-enabled = true
     dind-persistence-enabled  = true
