@@ -45,7 +45,7 @@ provider "kubernetes" {
 ### Start Training Cluster flavor k8s
 ###############################
 
-# module "training-cluster" {
+ module "training-cluster" {
 
    providers = {
      restapi.hosttech_dns = restapi.hosttech_dns
