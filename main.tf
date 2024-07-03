@@ -47,88 +47,88 @@ provider "kubernetes" {
 
 # module "training-cluster" {
 
-#   providers = {
-#     restapi.hosttech_dns = restapi.hosttech_dns
-#     hcloud               = hcloud
-#     kubernetes.acend     = kubernetes.acend
-#   }
+   providers = {
+     restapi.hosttech_dns = restapi.hosttech_dns
+     hcloud               = hcloud
+     kubernetes.acend     = kubernetes.acend
+   }
 
-#   source = "git::https://github.com/acend/terraform-k8s-cluster-lab.git//modules/training-cluster"
+   source = "git::https://github.com/acend/terraform-k8s-cluster-lab.git//modules/training-cluster"
 
-#   cluster_name   = "training"
-#   cluster_domain = "cluster.acend.ch"
-#   worker_count   = "3" // A minimum of 3 nodes is required
+   cluster_name   = "training"
+   cluster_domain = "cluster.acend.ch"
+   worker_count   = "3" // A minimum of 3 nodes is required
 
-#   hcloud_api_token     = var.hcloud_api_token
-#   hosttech_dns_token   = var.hosttech_dns_token
-#   hosttech-dns-zone-id = var.hosttech_dns_zone_id
+   hcloud_api_token     = var.hcloud_api_token
+   hosttech_dns_token   = var.hosttech_dns_token
+   hosttech-dns-zone-id = var.hosttech_dns_zone_id
 
 
-#   # SSH Public keys deployed on the VM's for SSH access
-#   extra_ssh_keys = local.ssh_keys
+   # SSH Public keys deployed on the VM's for SSH access
+   extra_ssh_keys = local.ssh_keys
 
-#   cluster_admin = ["user1", "user2", "user3"]
+   cluster_admin = ["user1", "user2", "user3"]
 
-#   # Webshell
-#   # Make sure to scale down to 0 before removing the cluster, 
-#   # otherwise there will be terraform errors due to missing provider config
-#   count-students = 5
+   # Webshell
+   # Make sure to scale down to 0 before removing the cluster, 
+   # otherwise there will be terraform errors due to missing provider config
+   count-students = 5
 
-#   # User VMs
-#   user-vms-enabled = false
+   # User VMs
+   user-vms-enabled = false
 
-#   # RBAC in Webshell
-#   webshell-rbac-enabled = true
+   # RBAC in Webshell
+   webshell-rbac-enabled = true
 
-#   webshell-settings = {
-#     version = "0.5.6"
+   webshell-settings = {
+     version = "0.5.6"
 
-#     theia-persistence-enabled = true
-#     dind-persistence-enabled  = true
-#     webshell-rbac-enabled     = true
+     theia-persistence-enabled = true
+     dind-persistence-enabled  = true
+     webshell-rbac-enabled     = true
 
-#     dind_resources = {
-#       limits = {
-#         cpu    = "2"
-#         memory = "1Gi"
-#       }
+     dind_resources = {
+       limits = {
+         cpu    = "2"
+         memory = "1Gi"
+       }
 
-#       requests = {
-#         cpu    = "50m"
-#         memory = "100Mi"
-#       }
-#     }
-#     theia_resources = {
-#       requests = {
-#         cpu    = "500m"
-#         memory = "1Gi"
-#       }
-#     }
-#   }
-# }
+       requests = {
+         cpu    = "50m"
+         memory = "100Mi"
+       }
+     }
+     theia_resources = {
+       requests = {
+         cpu    = "500m"
+         memory = "1Gi"
+       }
+     }
+   }
+ }
 
-# output "training-kubeconfig" {
-#   value     = module.training-cluster.kubeconfig_raw
-#   sensitive = true
-# }
+ output "training-kubeconfig" {
+   value     = module.training-cluster.kubeconfig_raw
+   sensitive = true
+ }
 
-# output "argocd-admin-password" {
-#   value     = module.training-cluster.argocd-admin-password
-#   sensitive = true
-# }
+ output "argocd-admin-password" {
+   value     = module.training-cluster.argocd-admin-password
+   sensitive = true
+ }
 
-# output "student-passwords" {
-#   value     = module.training-cluster.student-passwords
-#   sensitive = true
-# }
+ output "student-passwords" {
+   value     = module.training-cluster.student-passwords
+   sensitive = true
+ }
 
-# output "count-students" {
-#   value = module.training-cluster.count-students
-# }
+ output "count-students" {
+   value = module.training-cluster.count-students
+ }
 
-# output "studentname-prefix" {
-#   value = module.training-cluster.studentname-prefix
-# }
+ output "studentname-prefix" {
+   value = module.training-cluster.studentname-prefix
+ }
 
 
 # ### End Training Cluster flavor k8s
