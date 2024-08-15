@@ -36,8 +36,6 @@ TODOs and Work in Progress:
 
 TODOs and Work in Progress:
 
-- Cleanup up of everyhting does not yet fully work.
-- You might need to remove the ingress controller Loadbalancer manually in the hetzner console. The reason for this, during destroy the Cloud Controller Manager (which provision the loadbalancer) is removed before the removal of the ingress controller.
 - You might need to remove  DNS Records for the training cluster, because Crossplane might be removed before removal of the ingress controller, which prevents removal of the DNS records.
 
 ## Concept Training Cluster Setup
