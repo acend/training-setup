@@ -5,3 +5,6 @@ terraform.tfstate.backup
 .terraform.lock.hcl
 backend.sh
 .env
+kubeconfig.yaml
+kubectl*
+
