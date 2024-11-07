@@ -75,7 +75,7 @@ flowchart LR
 
 ### 1. Cluster provisioning using Terraform triggered in GitHub Actions workflows
 
-- Terraform state stored in S3 bucket (on acend cluster)
+- Terraform state stored in S3 bucket (on hcloud)
   - The Github Action in this Repository uses the correct secrets and environment variables for this. The Terraform backend is conifgured to use those to store the state.
 - Each cluster flavor has its own Terraform module which is in a seperated repository.
 - Terraform provider should be configured in root module (if possible) and passed to the module. Otherwise a simple removing of the module definition does not work as Terraform cannot remove the components within the module if provider definition is gone.
