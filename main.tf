@@ -58,7 +58,7 @@ module "training-cluster" {
 
   cluster_name   = "training"
   cluster_domain = "cluster.acend.ch"
-  worker_count   = "10" // A minimum of 3 nodes is required
+  worker_count   = "5" // A minimum of 3 nodes is required
 
   hcloud_api_token     = var.hcloud_api_token
   hosttech_dns_token   = var.hosttech_dns_token
