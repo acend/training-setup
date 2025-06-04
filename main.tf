@@ -73,7 +73,7 @@ module "training-cluster" {
   # Webshell
   # Make sure to scale down to 0 before removing the cluster, 
   # otherwise there will be terraform errors due to missing provider config
-  count-students = 0
+  count-students = 5
 
   # User VMs
   user-vms-enabled = false
@@ -82,7 +82,7 @@ module "training-cluster" {
   webshell-rbac-enabled = true
 
   webshell-settings = {
-    version = "0.5.16"
+    version = "0.5.19"
 
     theia-persistence-enabled = true
     dind-persistence-enabled  = true
