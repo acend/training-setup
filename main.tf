@@ -64,7 +64,6 @@ module "training-cluster" {
   hosttech_dns_token   = var.hosttech_dns_token
   hosttech-dns-zone-id = var.hosttech_dns_zone_id
 
-
   # SSH Public keys deployed on the VM's for SSH access
   extra_ssh_keys = local.ssh_keys
 
@@ -73,7 +72,7 @@ module "training-cluster" {
   # Webshell
   # Make sure to scale down to 0 before removing the cluster, 
   # otherwise there will be terraform errors due to missing provider config
-  count-students = 0
+  count-students = 10
 
   # User VMs
   user-vms-enabled = false
