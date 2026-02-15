@@ -63,7 +63,7 @@ module "training-cluster" {
   hcloud_api_token     = var.hcloud_api_token
   hosttech_dns_token   = var.hosttech_dns_token
   hosttech-dns-zone-id = var.hosttech_dns_zone_id
-  node_image_type      = "debian-13"
+  # node_image_type      = "debian-13"
 
   # SSH Public keys deployed on the VM's for SSH access
   extra_ssh_keys = local.ssh_keys
