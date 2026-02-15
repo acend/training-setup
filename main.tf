@@ -38,7 +38,7 @@ provider "hcloud" {
 // Kubernetes Provider for the acend bootstraping cluster
 provider "kubernetes" {
   alias    = "acend"
-  host     = "https://api.training.cluster.acend.ch:6443"
+  host     = "https://k8s-prod.acend.ch:6443"
   insecure = true
 }
 
@@ -58,7 +58,7 @@ module "training-cluster" {
 
   cluster_name   = "training"
   cluster_domain = "cluster.acend.ch"
-  worker_count   = "3" // A minimum of 3 nodes is required
+  worker_count   = "4" // A minimum of 3 nodes is required
 
   hcloud_api_token     = var.hcloud_api_token
   hosttech_dns_token   = var.hosttech_dns_token
