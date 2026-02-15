@@ -38,7 +38,7 @@ provider "hcloud" {
 // Kubernetes Provider for the acend bootstraping cluster
 provider "kubernetes" {
   alias    = "acend"
-  host     = "https://k8s-prod.acend.ch:6443"
+  host     = "https://api.training.cluster.acend.ch:6443"
   insecure = true
 }
 
