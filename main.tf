@@ -45,7 +45,7 @@ provider "kubernetes" {
 
 ### Start Training Cluster flavor k8s
 ###############################
-
+/*
 module "training-cluster" {
 
   providers = {
@@ -130,5 +130,5 @@ output "count-students" {
 output "studentname-prefix" {
   value = module.training-cluster.studentname-prefix
 }
-
+*/
 ### End Training Cluster flavor k8s
