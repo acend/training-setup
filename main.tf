@@ -56,9 +56,10 @@ module "training-cluster" {
 
   source = "git::https://github.com/acend/terraform-k8s-cluster-lab.git//modules/training-cluster"
 
-  cluster_name   = "training"
-  cluster_domain = "cluster.acend.ch"
-  worker_count   = "4" // A minimum of 3 nodes is required
+  cluster_name       = "training"
+  cluster_domain     = "cluster.acend.ch"
+  controlplane_count = 3
+  worker_count       = "1" // A minimum of 3 nodes is required
 
   hcloud_api_token     = var.hcloud_api_token
   hosttech_dns_token   = var.hosttech_dns_token
@@ -73,7 +74,7 @@ module "training-cluster" {
   # Webshell
   # Make sure to scale down to 0 before removing the cluster,
   # otherwise there will be terraform errors due to missing provider config
-  count-students = 8
+  count-students = 1
 
   # User VMs
   user-vms-enabled = false
@@ -82,7 +83,7 @@ module "training-cluster" {
   webshell-rbac-enabled = true
 
   webshell-settings = {
-    version = "0.5.20"
+    version = "0.5.30"
 
     theia-persistence-enabled = true
     dind-persistence-enabled  = true
