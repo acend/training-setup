@@ -59,7 +59,7 @@ module "training-cluster" {
   cluster_name       = "training"
   cluster_domain     = "cluster.acend.ch"
   controlplane_count = 3
-  worker_count       = 1 // 1 worker could host 4 users
+  worker_count       = 2 // 1 worker could host 4 users
 
   hcloud_api_token     = var.hcloud_api_token
   hosttech_dns_token   = var.hosttech_dns_token
@@ -74,7 +74,7 @@ module "training-cluster" {
   # Webshell
   # Make sure to scale down to 0 before removing the cluster,
   # otherwise there will be terraform errors due to missing provider config
-  count-students = 1
+  count-students = 2
 
   # User VMs
   user-vms-enabled = false
